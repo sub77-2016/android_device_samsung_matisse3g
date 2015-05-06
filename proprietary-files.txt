@@ -10,7 +10,7 @@ bin/ds_fmc_appd
 bin/hci_qcomm_init
 bin/hvdcp
 bin/irsc_util
-bin/macloader
+#bin/macloader
 bin/mm-pp-daemon
 bin/mm-qcamera-daemon
 bin/mpdecision
@@ -38,10 +38,10 @@ etc/firmware/cpp_firmware_v1_1_6.fw
 etc/firmware/cpp_firmware_v1_2_0.fw
 etc/firmware/leia_pfp_470.fw
 etc/firmware/leia_pm4_470.fw
-etc/wifi/p2p_supplicant_overlay.conf
-etc/wifi/wpa_supplicant.conf
-etc/wifi/wpa_supplicant_ath6kl.conf
-etc/wifi/wpa_supplicant_overlay.conf
+#etc/wifi/p2p_supplicant_overlay.conf
+#etc/wifi/wpa_supplicant.conf
+#etc/wifi/wpa_supplicant_ath6kl.conf
+#etc/wifi/wpa_supplicant_overlay.conf
 etc/Bluetooth_cal.acdb
 etc/General_cal.acdb
 etc/Global_cal.acdb
@@ -350,7 +350,7 @@ vendor/lib/mediadrm/libwvdrmengine.so
 
 #  Radio from tabprolte
 #
-bin/ATFWD-daemon
+#bin/ATFWD-daemon
 #
 bin/ds_fmc_appd
 bin/efsks

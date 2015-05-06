@@ -353,11 +353,11 @@ vendor/lib/mediadrm/libwvdrmengine.so
 #bin/ATFWD-daemon
 #
 bin/ds_fmc_appd
-bin/efsks
-bin/ks
+#bin/efsks
+#bin/ks
 -lib/libril.so
-lib/libsec-ril.so
-bin/qcks
+#lib/libsec-ril.so
+#bin/qcks
 bin/qmuxd
 bin/rmt_storage
 lib/libatparser.so
@@ -377,5 +377,5 @@ vendor/lib/libqmi_csi.so
 vendor/lib/libqmi_encdec.so
 vendor/lib/libqcci_legacy.so
 vendor/lib/libqmi_client_qmux.so
-lib/libril-qcril-hook-oem.so
+#lib/libril-qcril-hook-oem.so
 lib/libsecril-client.so

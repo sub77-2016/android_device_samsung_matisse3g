@@ -3,10 +3,10 @@ TARGET_SCREEN_HEIGHT := 1280
 TARGET_SCREEN_WIDTH := 800
 
 # Inherit some common stuff.
-$(call inherit-product, vendor/cm/config/common_full_tablet_wifionly.mk)
+$(call inherit-product, vendor/cm/config/common_full_phone.mk)
 
 # Inherit device configuration
-$(call inherit-product, device/samsung/matissewifi/full_matissewifi.mk)
+$(call inherit-product, device/samsung/matisselte/full_matisselte.mk)
 
 ## Device identifier. This must come after all inclusions
-PRODUCT_NAME := cm_matissewifi
+PRODUCT_NAME := cm_matisselte

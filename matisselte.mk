@@ -17,13 +17,13 @@
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 
 # Get non-open-source specific aspects
-$(call inherit-product-if-exists, vendor/samsung/matissewifi/matissewifi-vendor.mk)
+$(call inherit-product-if-exists, vendor/samsung/matisselte/matisselte-vendor.mk)
 
 ## We are a tablet, not a phone
 PRODUCT_CHARACTERISTICS := tablet
 
 # Overlays
-DEVICE_PACKAGE_OVERLAYS += device/samsung/matissewifi/overlay
+DEVICE_PACKAGE_OVERLAYS += device/samsung/matisselte/overlay
 
 # Device uses high-density artwork where available
 PRODUCT_AAPT_CONFIG := normal hdpi xhdpi
@@ -45,20 +45,20 @@ PRODUCT_PACKAGES += \
     gps.msm8226
 
 PRODUCT_COPY_FILES += \
-    device/samsung/matissewifi/gps/etc/gps.conf:/system/etc/gps.conf \
-    device/samsung/matissewifi/gps/etc/sap.conf:/system/etc/sap.conf
+    device/samsung/matisselte/gps/etc/gps.conf:/system/etc/gps.conf \
+    device/samsung/matisselte/gps/etc/sap.conf:/system/etc/sap.conf
 
 # Input device
 PRODUCT_COPY_FILES += \
-    device/samsung/matissewifi/idc/sec_e-pen.idc:system/usr/idc/sec_e-pen.idc
+    device/samsung/matisselte/idc/sec_e-pen.idc:system/usr/idc/sec_e-pen.idc
 
 # IR
 PRODUCT_PACKAGES += consumerir.msm8226
 
 # Keylayouts
 PRODUCT_COPY_FILES += \
-    device/samsung/matissewifi/keylayout/gpio-keys.kl:system/usr/keylayout/gpio-keys.kl \
-    device/samsung/matissewifi/keylayout/sec_touchscreen.kl:system/usr/keylayout/sec_touchscreen.kl
+    device/samsung/matisselte/keylayout/gpio-keys.kl:system/usr/keylayout/gpio-keys.kl \
+    device/samsung/matisselte/keylayout/sec_touchscreen.kl:system/usr/keylayout/sec_touchscreen.kl
 
 # Keystore
 PRODUCT_PACKAGES += \
@@ -70,7 +70,7 @@ PRODUCT_PACKAGES += \
 
 # Media
 PRODUCT_COPY_FILES += \
-    device/samsung/matissewifi/configs/media_profiles.xml:system/etc/media_profiles.xml
+    device/samsung/matisselte/configs/media_profiles.xml:system/etc/media_profiles.xml
 
 # Power
 PRODUCT_PACKAGES += \
@@ -88,14 +88,14 @@ PRODUCT_PACKAGES += \
 
 # Thermal
 PRODUCT_COPY_FILES += \
-    device/samsung/matissewifi/configs/thermal-engine-8226.conf:system/etc/thermal-engine-8226.conf \
-    device/samsung/matissewifi/configs/thermald-8226.conf:system/etc/thermald-8226.conf
+    device/samsung/matisselte/configs/thermal-engine-8226.conf:system/etc/thermal-engine-8226.conf \
+    device/samsung/matisselte/configs/thermald-8226.conf:system/etc/thermald-8226.conf
 
 # Wifi
 PRODUCT_COPY_FILES += \
-    kernel/samsung/matissewifi/drivers/staging/prima/firmware_bin/WCNSS_cfg.dat:system/etc/firmware/wlan/prima/WCNSS_cfg.dat \
-    kernel/samsung/matissewifi/drivers/staging/prima/firmware_bin/WCNSS_qcom_cfg.ini:system/etc/firmware/wlan/prima/WCNSS_qcom_cfg.ini \
-    kernel/samsung/matissewifi/drivers/staging/prima/firmware_bin/WCNSS_qcom_wlan_nv.bin:system/etc/firmware/wlan/prima/WCNSS_qcom_wlan_nv.bin
+    kernel/samsung/matisselte/drivers/staging/prima/firmware_bin/WCNSS_cfg.dat:system/etc/firmware/wlan/prima/WCNSS_cfg.dat \
+    kernel/samsung/matisselte/drivers/staging/prima/firmware_bin/WCNSS_qcom_cfg.ini:system/etc/firmware/wlan/prima/WCNSS_qcom_cfg.ini \
+    kernel/samsung/matisselte/drivers/staging/prima/firmware_bin/WCNSS_qcom_wlan_nv.bin:system/etc/firmware/wlan/prima/WCNSS_qcom_wlan_nv.bin
 
 PRODUCT_PACKAGES += \
     libcurl \
@@ -107,7 +107,6 @@ PRODUCT_PACKAGES += \
 # Override build.prop
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.sf.lcd_density=160 \
-    ro.carrier=wifi-only
 
 # Common msm8226
 $(call inherit-product, device/samsung/msm8226-common/msm8226.mk)

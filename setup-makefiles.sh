@@ -1,7 +1,7 @@
 #!/bin/bash
 
 export VENDOR=samsung
-export DEVICE=matissewifi
+export DEVICE=matisselte
 
 OUTDIR=vendor/$VENDOR/$DEVICE
 MAKEFILE=../../../$OUTDIR/$DEVICE-vendor-blobs.mk
@@ -111,7 +111,7 @@ EOF
 
 LOCAL_PATH := \$(call my-dir)
 
-ifneq (\$(filter matissewifi,\$(TARGET_DEVICE)),)
+ifneq (\$(filter matisselte,\$(TARGET_DEVICE)),)
 
 include \$(CLEAR_VARS)
 LOCAL_MODULE := libtime_genoff

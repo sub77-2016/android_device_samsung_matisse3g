@@ -1,8 +1,5 @@
 /*
- * Copyright (c) 2012-2013, The Linux Foundation. All rights reserved.
- * Not a Contribution.
- *
- * Copyright (C) 2006 The Android Open Source Project
+ * Copyright (c) 2014, The CyanogenMod Project. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -33,15 +30,20 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 /**
- * RIL customization for tabpro LTE devices
+ * RIL customization for Galaxy S3 Neo Single-sim devices
  *
  * {@hide}
  */
-public class TabproLteRIL extends RIL {
+public class SamsungMSM8226RIL extends RIL {
 
     private static final int RIL_REQUEST_DIAL_EMERGENCY = 10016;
+    private static final int RIL_UNSOL_RESPONSE_IMS_NETWORK_STATE_CHANGED = 1036;
+    private static final int RIL_UNSOL_DEVICE_READY_NOTI = 11008;
+    private static final int RIL_UNSOL_AM = 11010;
+    private static final int RIL_UNSOL_WB_AMR_STATE = 11017;
+    private static final int RIL_UNSOL_RESPONSE_HANDOVER = 11021;
 
-    public TabproLteRIL(Context context, int networkMode, int cdmaSubscription) {
+    public SamsungMSM8226RIL(Context context, int networkMode, int cdmaSubscription) {
         super(context, networkMode, cdmaSubscription);
         mQANElements = 6;
     }
@@ -58,9 +60,9 @@ public class TabproLteRIL extends RIL {
 
         rr.mParcel.writeString(address);
         rr.mParcel.writeInt(clirMode);
-        rr.mParcel.writeInt(0);         // CallDetails.call_type
-        rr.mParcel.writeInt(1);         // CallDetails.call_domain
-        rr.mParcel.writeString("");     // CallDetails.getCsvFromExtras
+        rr.mParcel.writeInt(0);     // CallDetails.call_type
+        rr.mParcel.writeInt(1);     // CallDetails.call_domain
+        rr.mParcel.writeString(""); // CallDetails.getCsvFromExtras
 
         if (uusInfo == null) {
             rr.mParcel.writeInt(0); // UUS information is absent
@@ -106,7 +108,6 @@ public class TabproLteRIL extends RIL {
             appStatus.pin1_replaced  = p.readInt();
             appStatus.pin1           = appStatus.PinStateFromRILInt(p.readInt());
             appStatus.pin2           = appStatus.PinStateFromRILInt(p.readInt());
-            // All subsequent readInt()s added for our device
             p.readInt(); // pin1_num_retries
             p.readInt(); // puk1_num_retries
             p.readInt(); // pin2_num_retries
@@ -138,7 +139,6 @@ public class TabproLteRIL extends RIL {
             dc = new DriverCall();
 
             dc.state = DriverCall.stateFromCLCC(p.readInt());
-            // & 0xff to truncate to 1 byte added for us, not in RIL.java
             dc.index = p.readInt() & 0xff;
             dc.TOA = p.readInt();
             dc.isMpty = (0 != p.readInt());
@@ -146,7 +146,7 @@ public class TabproLteRIL extends RIL {
             dc.als = p.readInt();
             voiceSettings = p.readInt();
             dc.isVoice = (0 != voiceSettings);
-            boolean isVideo = (0 != p.readInt());
+            boolean isVideo = (0 != p.readInt());   // Samsung CallDetails
             int call_type = p.readInt();            // Samsung CallDetails
             int call_domain = p.readInt();          // Samsung CallDetails
             String csv = p.readString();            // Samsung CallDetails
@@ -243,13 +243,45 @@ public class TabproLteRIL extends RIL {
                 tdScdmaRscp, isGsm);
     }
 
+    @Override
+    protected void
+    processUnsolicited (Parcel p) {
+        Object ret;
+        int dataPosition = p.dataPosition(); // save off position within the Parcel
+        int response = p.readInt();
+
+        switch(response) {
+            case RIL_UNSOL_RESPONSE_IMS_NETWORK_STATE_CHANGED:
+                ret = responseVoid(p);
+                break;
+            case RIL_UNSOL_DEVICE_READY_NOTI:
+                ret = responseVoid(p);
+                break;
+            case RIL_UNSOL_AM:
+                ret = responseString(p);
+                break;
+            case RIL_UNSOL_WB_AMR_STATE:
+                ret = responseInts(p);
+                break;
+            case RIL_UNSOL_RESPONSE_HANDOVER:
+                ret = responseVoid(p);
+                break;
+            default:
+                // Rewind the Parcel
+                p.setDataPosition(dataPosition);
+
+                // Forward responses that we are not overriding to the super class
+                super.processUnsolicited(p);
+                return;
+        }
+    }
+
     private void
     dialEmergencyCall(String address, int clirMode, Message result) {
         RILRequest rr;
-        Rlog.v(RILJ_LOG_TAG, "Emergency dial: " + address);
 
         rr = RILRequest.obtain(RIL_REQUEST_DIAL_EMERGENCY, result);
-        rr.mParcel.writeString(address + "/");
+        rr.mParcel.writeString(address);
         rr.mParcel.writeInt(clirMode);
         rr.mParcel.writeInt(0);        // CallDetails.call_type
         rr.mParcel.writeInt(3);        // CallDetails.call_domain
@@ -259,17 +291,5 @@ public class TabproLteRIL extends RIL {
         if (RILJ_LOGD) riljLog(rr.serialString() + "> " + requestToString(rr.mRequest));
 
         send(rr);
-    }
-
-    private void logParcel(Parcel p) {
-        StringBuffer s = new StringBuffer();
-        byte [] bytes = p.marshall();
-
-        for (int i = 0; i < bytes.length; i++) {
-            if (i > 0) s.append(" ");
-            if (i == p.dataPosition()) s.append("*** ");
-            s.append(bytes[i]);
-        }
-        riljLog("parcel position=" + p.dataPosition() + ": " + s);
     }
 }

@@ -17,13 +17,13 @@
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 
 # Get non-open-source specific aspects
-$(call inherit-product-if-exists, vendor/samsung/matisselte/matisselte-vendor.mk)
+$(call inherit-product-if-exists, vendor/samsung/matisse3g/matisse3g-vendor.mk)
 
 ## We are a tablet, not a phone
 PRODUCT_CHARACTERISTICS := tablet
 
 # Overlays
-DEVICE_PACKAGE_OVERLAYS += device/samsung/matisselte/overlay
+DEVICE_PACKAGE_OVERLAYS += device/samsung/matisse3g/overlay
 
 # Device uses high-density artwork where available
 PRODUCT_AAPT_CONFIG := normal hdpi xhdpi
@@ -49,20 +49,20 @@ PRODUCT_PACKAGES += \
     gps.msm8226
 
 PRODUCT_COPY_FILES += \
-    device/samsung/matisselte/gps/etc/gps.conf:/system/etc/gps.conf \
-    device/samsung/matisselte/gps/etc/sap.conf:/system/etc/sap.conf
+    device/samsung/matisse3g/gps/etc/gps.conf:/system/etc/gps.conf \
+    device/samsung/matisse3g/gps/etc/sap.conf:/system/etc/sap.conf
 
 # Input device
 PRODUCT_COPY_FILES += \
-    device/samsung/matisselte/idc/sec_e-pen.idc:system/usr/idc/sec_e-pen.idc
+    device/samsung/matisse3g/idc/sec_e-pen.idc:system/usr/idc/sec_e-pen.idc
 
 # IR
 PRODUCT_PACKAGES += consumerir.msm8226
 
 # Keylayouts
 PRODUCT_COPY_FILES += \
-    device/samsung/matisselte/keylayout/gpio-keys.kl:system/usr/keylayout/gpio-keys.kl \
-    device/samsung/matisselte/keylayout/sec_touchscreen.kl:system/usr/keylayout/sec_touchscreen.kl
+    device/samsung/matisse3g/keylayout/gpio-keys.kl:system/usr/keylayout/gpio-keys.kl \
+    device/samsung/matisse3g/keylayout/sec_touchscreen.kl:system/usr/keylayout/sec_touchscreen.kl
 
 # Keystore
 PRODUCT_PACKAGES += \
@@ -74,7 +74,7 @@ PRODUCT_PACKAGES += \
 
 # Media
 PRODUCT_COPY_FILES += \
-    device/samsung/matisselte/configs/media_profiles.xml:system/etc/media_profiles.xml
+    device/samsung/matisse3g/configs/media_profiles.xml:system/etc/media_profiles.xml
 
 # Power
 PRODUCT_PACKAGES += \
@@ -92,8 +92,8 @@ PRODUCT_PACKAGES += \
 
 # Thermal
 PRODUCT_COPY_FILES += \
-    device/samsung/matisselte/configs/thermal-engine-8226.conf:system/etc/thermal-engine-8226.conf \
-    device/samsung/matisselte/configs/thermald-8226.conf:system/etc/thermald-8226.conf
+    device/samsung/matisse3g/configs/thermal-engine-8226.conf:system/etc/thermal-engine-8226.conf \
+    device/samsung/matisse3g/configs/thermald-8226.conf:system/etc/thermald-8226.conf
 
 # Wifi
 PRODUCT_COPY_FILES += \

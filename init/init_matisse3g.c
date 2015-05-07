@@ -54,16 +54,16 @@ void init_msm_properties(unsigned long msm_id, unsigned long msm_ver, char *boar
 
     property_get("ro.bootloader", bootloader);
 
-    if (strstr(bootloader, "T535")) {
-        property_set("ro.build.fingerprint", "samsung/matisselte/matisseltexx:4.4.2/KOT49H/T535UEU1ANAI:user/release-keys");
-        property_set("ro.build.description", "matisselte-user 4.4.2 KOT49H T535UEU1ANAI release-keys");
-        property_set("ro.product.model", "SM-T535");
-        property_set("ro.product.device", "matisselte");
-        property_set("ro.telephony.ril_class", "STabproLteRIL");
+    if (strstr(bootloader, "T531")) {
+        property_set("ro.build.fingerprint", "samsung/matisse3g/matisse3gxx:4.4.2/KOT49H/T531UEU1ANAI:user/release-keys");
+        property_set("ro.build.description", "matisse3g-user 4.4.2 KOT49H T531UEU1ANAI release-keys");
+        property_set("ro.product.model", "SM-T531");
+        property_set("ro.product.device", "matisse3g");
+        property_set("ro.telephony.ril_class", "SamsungMSM8226RIL");
         gsm_properties();
     } else {
-        property_set("ro.build.fingerprint", "samsung/matisseltexx/matisselte:4.4.2/KOT49H/T320XXU1ANAI:user/release-keys");
-        property_set("ro.build.description", "matisseltexx-user 4.4.2 KOT49H T530XXU1ANAI release-keys");
+        property_set("ro.build.fingerprint", "samsung/matisse3gxx/matisse3g:4.4.2/KOT49H/T320XXU1ANAI:user/release-keys");
+        property_set("ro.build.description", "matisse3gxx-user 4.4.2 KOT49H T530XXU1ANAI release-keys");
         property_set("ro.product.model", "SM-T530");
         property_set("ro.product.device", "matissewifi");
     }
@@ -74,7 +74,7 @@ void init_msm_properties(unsigned long msm_id, unsigned long msm_ver, char *boar
 
 void gsm_properties()
 {
-    property_set("telephony.lteOnGsmDevice", "1");
+    property_set("telephony.lteOnGsmDevice", "0");
     property_set("ro.telephony.default_network", "0");
 }
 

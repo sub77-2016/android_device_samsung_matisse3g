@@ -59,13 +59,13 @@ void init_msm_properties(unsigned long msm_id, unsigned long msm_ver, char *boar
         property_set("ro.build.description", "matisselte-user 4.4.2 KOT49H T535UEU1ANAI release-keys");
         property_set("ro.product.model", "SM-T535");
         property_set("ro.product.device", "matisselte");
-        property_set("ro.telephony.ril_class", "SamsungMSM8226RIL");
+        property_set("ro.telephony.ril_class", "STabproLteRIL");
         gsm_properties();
     } else {
         property_set("ro.build.fingerprint", "samsung/matisseltexx/matisselte:4.4.2/KOT49H/T320XXU1ANAI:user/release-keys");
         property_set("ro.build.description", "matisseltexx-user 4.4.2 KOT49H T530XXU1ANAI release-keys");
         property_set("ro.product.model", "SM-T530");
-        property_set("ro.product.device", "matisselte");
+        property_set("ro.product.device", "matissewifi");
     }
     property_get("ro.product.device", device);
     strlcpy(devicename, device, sizeof(devicename));

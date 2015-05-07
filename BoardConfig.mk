@@ -62,7 +62,7 @@ TARGET_UNIFIED_DEVICE := true
 
 # RIL
 BOARD_RIL_CLASS := ../../../device/samsung/matisselte/ril
-BOARD_PROVIDES_LIBRIL := true
+#BOARD_PROVIDES_LIBRIL := true
 
 # Lights
 TARGET_PROVIDES_LIBLIGHT := true

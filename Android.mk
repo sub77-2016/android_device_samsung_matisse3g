@@ -22,7 +22,7 @@
 
 LOCAL_PATH := $(call my-dir)
 
-ifeq ($(TARGET_DEVICE),matisse3g)
+ifeq ($(TARGET_DEVICE),matisselte)
 
 include $(call all-subdir-makefiles,$(LOCAL_PATH))
 

@@ -15,9 +15,9 @@
 # inherit from common msm8226
 -include device/samsung/msm8226-common/BoardConfigCommon.mk
 
-TARGET_SPECIFIC_HEADER_PATH := device/samsung/matisse3g/include
+TARGET_SPECIFIC_HEADER_PATH := device/samsung/matisselte/include
 
-TARGET_OTA_ASSERT_DEVICE := matisse3g,matisse3gxx
+TARGET_OTA_ASSERT_DEVICE := matisselte,matisseltexx
 
 # Architecture
 TARGET_CPU_VARIANT := cortex-a7
@@ -26,7 +26,7 @@ TARGET_CPU_VARIANT := cortex-a7
 TARGET_BOOTLOADER_BOARD_NAME := MSM8226
 
 # Kernel
-BOARD_CUSTOM_BOOTIMG_MK := device/samsung/matisse3g/mkbootimg.mk
+BOARD_CUSTOM_BOOTIMG_MK := device/samsung/matisselte/mkbootimg.mk
 BOARD_KERNEL_BASE := 0x00000000
 BOARD_KERNEL_CMDLINE := console=null androidboot.console=null androidboot.hardware=qcom user_debug=31 msm_rtb.filter=0x37 ehci-hcd.park=3
 BOARD_KERNEL_PAGESIZE := 2048
@@ -34,7 +34,7 @@ BOARD_KERNEL_SEPARATED_DT := true
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x02000000 --tags_offset 0x1e00000
 TARGET_KERNEL_SOURCE := kernel/samsung/matissewifi
 TARGET_KERNEL_CONFIG := msm8226-sec_defconfig
-TARGET_KERNEL_VARIANT_CONFIG := msm8226-sec_matisse3g_defconfig
+TARGET_KERNEL_VARIANT_CONFIG := msm8926-sec_matisselte_defconfig
 
 WLAN_MODULES:
 	mkdir -p $(KERNEL_MODULES_OUT)/pronto
@@ -49,7 +49,7 @@ DEVICE_RESOLUTION := 800x1280
 AUDIO_FEATURE_DISABLED_FM := true
 
 # Bluetooth
-BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/samsung/matisse3g/bluetooth
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/samsung/matisselte/bluetooth
 
 # GPS
 TARGET_NO_RPC := true
@@ -57,11 +57,14 @@ TARGET_PROVIDES_GPS_LOC_API := true
 
 # Init
 TARGET_INIT_VENDOR_LIB := libinit_msm
-TARGET_LIBINIT_DEFINES_FILE := device/samsung/matisse3g/init/init_matisse3g.c
+TARGET_LIBINIT_DEFINES_FILE := device/samsung/matisselte/init/init_matisselte.c
 TARGET_UNIFIED_DEVICE := true
 
+# IR
+TARGET_PROVIDES_CONSUMERIR_HAL := true
+
 # RIL
-BOARD_RIL_CLASS := ../../../device/samsung/matisse3g/ril
+BOARD_RIL_CLASS := ../../../device/samsung/matisselte/ril
 #BOARD_PROVIDES_LIBRIL := true
 
 # Lights
@@ -76,7 +79,7 @@ BOARD_FLASH_BLOCK_SIZE := 131072
 TARGET_USERIMAGES_USE_EXT4 := true
 
 # PowerHAL
-TARGET_POWERHAL_SET_INTERACTIVE_EXT := device/samsung/matisse3g/power/power_ext.c
+TARGET_POWERHAL_SET_INTERACTIVE_EXT := device/samsung/matisselte/power/power_ext.c
 TARGET_POWERHAL_VARIANT := qcom
 
 # Recovery
@@ -87,7 +90,7 @@ BOARD_HAS_NO_SELECT_BUTTON := true
 BOARD_RECOVERY_SWIPE := true
 BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_23x41.h\"
 BOARD_USES_MMCUTILS := true
-TARGET_RECOVERY_FSTAB := device/samsung/matisse3g/rootdir/etc/fstab.qcom
+TARGET_RECOVERY_FSTAB := device/samsung/matisselte/rootdir/etc/fstab.qcom
 
 # Wifi
 BOARD_HAS_QCOM_WLAN              := true

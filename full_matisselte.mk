@@ -14,11 +14,11 @@
 
 #
 # This file is the build configuration for a full Android
-# build for matisse3g hardware. This cleanly combines a set of
+# build for matisselte hardware. This cleanly combines a set of
 # device-specific aspects (drivers) with a device-agnostic
 # product configuration (apps). Except for a few implementation
 # details, it only fundamentally contains two inherit-product
-# lines, full and matisse3g, hence its name.
+# lines, full and matisselte, hence its name.
 #
 
 
@@ -26,11 +26,11 @@
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
 # Set those variables here to overwrite the inherited values.
-PRODUCT_NAME := matisse3g
-PRODUCT_DEVICE := matisse3g
+PRODUCT_NAME := matisselte
+PRODUCT_DEVICE := matisselte
 PRODUCT_BRAND := samsung
 PRODUCT_MANUFACTURER := samsung
 PRODUCT_MODEL := SM-T535
 
-$(call inherit-product, device/samsung/matisse3g/matisse3g.mk)
-$(call inherit-product-if-exists, vendor/samsung/matisse3g/matisse3g-vendor.mk)
+$(call inherit-product, device/samsung/matisselte/matisselte.mk)
+$(call inherit-product-if-exists, vendor/samsung/matisselte/matisselte-vendor.mk)

@@ -61,7 +61,7 @@ TARGET_LIBINIT_DEFINES_FILE := device/samsung/matisselte/init/init_matisselte.c
 TARGET_UNIFIED_DEVICE := true
 
 # RIL
-BOARD_RIL_CLASS := ../../../device/samsung/matissewifi/ril
+BOARD_RIL_CLASS := ../../../device/samsung/matisselte/ril
 BOARD_PROVIDES_LIBRIL := true
 
 # Lights
